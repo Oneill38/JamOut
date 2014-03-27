@@ -33,7 +33,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-  gem 'bcrypt', '~> 3.1.7'
+  gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -43,3 +43,18 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+# rspec for rails. set up with `rails g rpsec:install`
+# https://github.com/rspec/rspec-rails
+  gem 'rspec-rails'
+# sets rails console to open in pry instead of irb
+# https://github.com/rweng/pry-rails
+  gem 'pry-rails'
+# command line tool. run `$ annotate`. annotates models with schema data
+# https://github.com/ctran/annotate_models
+  gem 'annotate'
+# one liners to test common rails functionality
+# https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-matchers'
+end

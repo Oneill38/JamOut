@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_secure_password
   has_many :my_events
 
   validates(:name,     { :presence     => true })
