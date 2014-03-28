@@ -1,6 +1,20 @@
 <h1>Welcome To JamOut</h1>
 
-<%= link_to "Create an Account", new_user_path %>
-<%= link_to "Log In", session_new_path %>
-<%= link_to "Log Out", logout_path %>
+<% if logged_in? %>
+  <p>
+    <a href="/logout"> Logout</a>
+  </p>
+  <p>
+    <a href="/users/<%=current_user.id %>">My Account Page</a>
+  </p>
+  <p>
+    <a href="/events">"Search For A Concert!"</a>
+<% else %>
+  <p>
+    <a href="/users/new">Sign Up</a>
+  </p>
+  <p>
+    <a href="/session/new">Login</a>
+  </p>
+<% end %>
 
