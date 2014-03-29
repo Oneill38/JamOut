@@ -46,13 +46,14 @@ class SearchController < ApplicationController
   end
 
   def show
-
+    # binding.pry
     @c = session[:title].count
     @t = Hash.new
    @t["title"] = session[:title]
    @t["time"] = session[:time]
    @t["venue"] =session[:venue]
    @t["url"] =session[:url]
+   # binding.pry
 
 
   end
