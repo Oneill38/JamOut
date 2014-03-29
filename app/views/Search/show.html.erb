@@ -1,15 +1,15 @@
 <h1> Concerts Matching Your Search Criteria </h1>
 
 
-<ul>
+<p>
    <% @c.times do %>
    <% @t.each do |k,v| %>
-   <li>
-   <%= v.pop %>
-  <% end %>
-</li>
+ </br>
+  <%= v.pop %>
   <% end %>
 
-</ul>
+  <% end %>
+
+</p>
 
 

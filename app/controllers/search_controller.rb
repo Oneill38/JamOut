@@ -5,7 +5,7 @@ class SearchController < ApplicationController
   end
 
   def create
-    session[:zip] = params[:zip_code]
+   session[:zip] = params[:zip_code]
     session[:radius] = params[:radius] + "mi"
     session[:start] = params[:start_date]
     session[:end] = params[:end_date]
@@ -25,8 +25,6 @@ class SearchController < ApplicationController
 
     better_result = JSON.parse(response.to_json)
 
-
-
     session[:title] = better_result["events"].collect do |hash|
       hash["title"]
       end
@@ -43,9 +41,7 @@ class SearchController < ApplicationController
       hash["performers"][0]["url"]
     end
 
-
     redirect_to("/search/results")
-
 
   end
 
@@ -58,11 +54,7 @@ class SearchController < ApplicationController
    @t["venue"] =session[:venue]
    @t["url"] =session[:url]
 
-    #  c.times do
-    #   t.each do |k,v|
-    #     puts v.pop
-    #   end
-    # end
+
   end
 
 end
