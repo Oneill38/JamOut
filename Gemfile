@@ -58,3 +58,5 @@ group :development, :test do
 # https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-matchers'
 end
+
+gem 'httparty', '~>0.13.0'

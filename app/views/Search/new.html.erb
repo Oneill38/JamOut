@@ -1,0 +1,12 @@
+<h1>Search For A Concert</h1>
+
+<form method="post" action="/search">
+  <label for="Zip">Zip Code</label>
+  <input type="text" name="zip_code" value="zip code(mi)">
+  <label for="Radius">Radius</label>
+  <input type="text" name="radius" value="radius">
+  <input type="date" name="start_date" value="start date">
+  <input type="date" name="end_date" value="end date">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Go!">
+</form>
