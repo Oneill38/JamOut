@@ -3,7 +3,7 @@
 # Table name: events
 #
 #  id         :integer          not null, primary key
-#  venues_id  :integer
+#  venue_id   :integer
 #  title      :string(255)
 #  date       :integer
 #  time       :integer
