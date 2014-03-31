@@ -6,8 +6,8 @@
 <p>
   <% @results.each do |event| %>
     <%= event.title %></br>
-    <%= event.time %></br>
-    <%= event.venue %></br>
+    <%= event.date %></br>
+    <%= event.venue.name %></br><br>
   <% end %>
 
 

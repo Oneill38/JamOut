@@ -13,10 +13,13 @@
 #
 
 class Event < ActiveRecord::Base
-  has_one :venue
+  belongs_to(:venue)
   has_many :artists
 
   validates :title, uniqueness: { scope: :date }
+  validates :title, presence: true
+  validates :date, presence: true
+  validates :url, presence: true
 
   def self.search(options)
 
@@ -34,11 +37,11 @@ class Event < ActiveRecord::Base
    #Had to call to_json to get the code to work
     better_result = JSON.parse(response.to_json)
 
-
+    #This is for the events
     titles = better_result["events"].collect { |hash| hash["title"] }
 
 
-    times = better_result["events"].collect { |hash| hash["datetime_local"] }
+    dates = better_result["events"].collect { |hash| hash["datetime_local"].to_s }
 
 
     venues = better_result["events"].collect  {|hash| hash["venue"]["name"] }
@@ -46,22 +49,57 @@ class Event < ActiveRecord::Base
 
     urls = better_result["events"].collect { |hash| hash["performers"][0]["url"] }
 
+    #This is for the venue
+    name = better_result["events"].collect { |hash| hash["venue"]["name"]}
+    street = better_result["events"].collect { |hash| hash["venue"]["address"]}
+    city = better_result["events"].collect { |hash| hash["venue"]["city"]}
+    state = better_result["events"].collect { |hash| hash["venue"]["state"]}
+    zip = better_result["events"].collect { |hash| hash["venue"]["postal_code"]}
+
+   co = name.count
+   tt  = Hash.new
+   tt["name"] = name
+   tt["street"] = street
+   tt["city"] = city
+   tt["state"] = state
+   tt["zip"] = zip
+
+
+  resul = []
+   for n in 0..co do
+     v = { name: tt["name"][n], street: tt["street"][n], city: tt["city"][n], state: tt["state"][n], zip: tt["zip"][n]}
+     resul << v
+   end
+
+   binding.pry
+
+   resul.map do |entry|
+    Venue.create(name: entry[:name], street: entry[:street], city: entry[:city], state: entry[:state], zip: entry[:zip])
+   end
+    # OPTIMIZE comment what all this code does
 
    c = titles.count
    t  = Hash.new
    t["title"] = titles
-   t["time"] = times
+   t["date"] = dates
    t["venue"] = venues
    t["url"] = urls
 
   results = []
    for n in 0..c do
-   a = { artist: t["title"][n], time: t["time"][n], venue: t["venue"][n], url: t["url"][n]}
-   results << a
-  end
+    ven = t["venue"][n]
+    venue = Venue.find_by(:name => ven)
+     a = { artist: t["title"][n], date: t["date"][n], venue: venue.id, url: t["url"][n]}
+     results << a
+   end
 
+
+  # FIXME add time to the event, and set create a venue,
+  # TODO find venue by id and add the the event
+  results.pop
+  binding.pry
   results.map do |entry|
-    Event.new(title: entry[:artist], date: entry[:time], url: entry[:url])
+    @results = Event.create(venue_id: entry[:venue], title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
    end
   end
 
