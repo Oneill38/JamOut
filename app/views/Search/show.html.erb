@@ -4,18 +4,10 @@
 
 
 <p>
-  <% results = [] %>
-  <% for n in 0..@c do %>
-   <% a = { artist: @t["title"][n], time: @t["time"][n], venue: @t["venue"][n], url: @t["url"][n]} %>
-   <% results << a %>
-  <%end%>
-
-  <% results.each do |entry| %>
-    <% @event = Event.create(title: entry[:artist], date: entry[:time], url: entry[:url]) %>
-    <%= entry[:artist] %><br>
-    <%= entry[:time] %><br>
-    <%= entry[:venue] %><br>
-    <%= entry[:url] %><br><br>
+  <% @results.each do |event| %>
+    <%= event.title %></br>
+    <%= event.time %></br>
+    <%= event.venue %></br>
   <% end %>
 
 
