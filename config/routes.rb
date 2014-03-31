@@ -16,6 +16,7 @@ JamOutApp::Application.routes.draw do
 
   resources :users
   resources :events
+  resources :my_events
 
   get "/search/new"    => "search#new"
   post "/search"       => "search#create"

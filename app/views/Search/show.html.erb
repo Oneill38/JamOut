@@ -11,15 +11,11 @@
   <%end%>
 
   <% results.each do |entry| %>
-    <% @event = Event.new(title: entry[:artist], date: entry[:time], url: entry[:url]) %>
-    <% if @event.save %>
+    <% @event = Event.create(title: entry[:artist], date: entry[:time], url: entry[:url]) %>
     <%= entry[:artist] %><br>
     <%= entry[:time] %><br>
     <%= entry[:venue] %><br>
-    <%= entry[:url] %><br><%= button_to "add to list" %><br>
-    <% else %>
-    <%= "Try Again" %>
-    <% end %>
+    <%= entry[:url] %><br><br>
   <% end %>
 
 

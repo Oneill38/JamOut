@@ -25,6 +25,8 @@ class SearchController < ApplicationController
 
     better_result = JSON.parse(response.to_json)
 
+    binding.pry
+
     session[:title] = better_result["events"].collect do |hash|
       hash["title"]
       end
@@ -47,7 +49,7 @@ class SearchController < ApplicationController
 
   def show
     # binding.pry
-    @c = session[:title].count
+   @c = session[:title].count
     @t = Hash.new
    @t["title"] = session[:title]
    @t["time"] = session[:time]

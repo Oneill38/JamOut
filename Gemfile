@@ -60,3 +60,7 @@ group :development, :test do
 end
 
 gem 'httparty', '~>0.13.0'
+
+group :development do
+  gem "rails-erd"
+end
