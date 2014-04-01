@@ -14,7 +14,6 @@ class TicketsController < ApplicationController
   end
 
   def index
-    binding.pry
     @events = current_user.events
   end
 

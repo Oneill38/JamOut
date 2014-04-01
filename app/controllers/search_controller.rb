@@ -6,7 +6,6 @@ class SearchController < ApplicationController
 
   def show
     @results = Event.search(params)
-        binding.pry
   end
 
 end
