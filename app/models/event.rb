@@ -15,6 +15,7 @@
 class Event < ActiveRecord::Base
   belongs_to(:venue)
   has_many :artists
+  has_many :tickets
 
   validates :title, uniqueness: { scope: :date }
   validates :title, presence: true
@@ -39,14 +40,8 @@ class Event < ActiveRecord::Base
 
     #This is for the events
     titles = better_result["events"].collect { |hash| hash["title"] }
-
-
     dates = better_result["events"].collect { |hash| hash["datetime_local"].to_s }
-
-
     venues = better_result["events"].collect  {|hash| hash["venue"]["name"] }
-
-
     urls = better_result["events"].collect { |hash| hash["performers"][0]["url"] }
 
     #This is for the venue
@@ -71,7 +66,6 @@ class Event < ActiveRecord::Base
      resul << v
    end
 
-   binding.pry
 
    resul.map do |entry|
     Venue.create(name: entry[:name], street: entry[:street], city: entry[:city], state: entry[:state], zip: entry[:zip])
@@ -93,13 +87,10 @@ class Event < ActiveRecord::Base
      results << a
    end
 
-
-  # FIXME add time to the event, and set create a venue,
-  # TODO find venue by id and add the the event
+  #This pop, pops off last result which is blank
   results.pop
-  binding.pry
   results.map do |entry|
-    @results = Event.create(venue_id: entry[:venue], title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
+     Event.create(venue_id: entry[:venue], title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
    end
   end
 

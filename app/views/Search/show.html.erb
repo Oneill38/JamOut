@@ -4,13 +4,20 @@
 
 
 <p>
-  <% @results.each do |event| %>
-    <%= event.title %></br>
-    <%= event.date %></br>
-    <%= event.venue.name %></br><br>
+  <% @results.each do |concert| %>
+    <%= concert.title %></br>
+    <%= concert.date %></br>
+    <%= concert.venue.name %>
+
+    <%= form_tag("/tickets", method: :post) do %>
+      <%= hidden_field_tag(:user_id, current_user.id) %>
+      <%= hidden_field_tag(:title, concert.title) %>
+      <%= submit_tag("Add to My Events") %>
+
+  <% end %>
+   </br><br>
   <% end %>
 
 
 </p>
-
 

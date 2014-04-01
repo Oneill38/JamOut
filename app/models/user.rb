@@ -12,7 +12,9 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :my_events
+  has_many :tickets
+  has_many :events, through: :tickets
+
 
   validates(:name,     { :presence     => true })
   validates(:email,    { :uniqueness   => { case_sensitive: false }})

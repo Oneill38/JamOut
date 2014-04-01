@@ -7,7 +7,10 @@
 #  events_id :integer
 #
 
-class My_Event < ActiveRecord::Base
+class Ticket < ActiveRecord::Base
   belongs_to :user
-  has_one :event
+  belongs_to :event
+
+  validates :user_id, presence: true
+  validates :event_id, presence: true
 end

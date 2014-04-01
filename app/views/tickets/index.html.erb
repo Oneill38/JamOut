@@ -1,0 +1,8 @@
+<h1>My Events</h1>
+
+<% @events.each do |t| %>
+  <%= t.title %><br>
+  <%= t.date %><br>
+  <%= t.venue.name %><br>
+  <a href="<%= t.url %>">Buy Tickets!</a><br><br>
+<% end %>

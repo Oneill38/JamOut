@@ -17,6 +17,9 @@ JamOutApp::Application.routes.draw do
   resources :users
   resources :events
 
+  get "/tickets" => "tickets#index"
+  post "/tickets" => "tickets#create"
+
   get "/search/new"    => "search#new"
   get "/search/results" => "search#show"
 
