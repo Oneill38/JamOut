@@ -38,19 +38,20 @@ class Event < ActiveRecord::Base
    #Had to call to_json to get the code to work
     better_result = JSON.parse(response.to_json)
 
-    #This is for the events
+    #This is for the events, gathering array of all the parameters
     titles = better_result["events"].collect { |hash| hash["title"] }
     dates = better_result["events"].collect { |hash| hash["datetime_local"].to_s }
     venues = better_result["events"].collect  {|hash| hash["venue"]["name"] }
     urls = better_result["events"].collect { |hash| hash["performers"][0]["url"] }
 
-    #This is for the venue
+    #This is for the venue, gathering array of all the parameters
     name = better_result["events"].collect { |hash| hash["venue"]["name"]}
     street = better_result["events"].collect { |hash| hash["venue"]["address"]}
     city = better_result["events"].collect { |hash| hash["venue"]["city"]}
     state = better_result["events"].collect { |hash| hash["venue"]["state"]}
     zip = better_result["events"].collect { |hash| hash["venue"]["postal_code"]}
 
+    #made a hash to contain all the arrays, make them easier to access
    co = name.count
    tt  = Hash.new
    tt["name"] = name
@@ -59,7 +60,8 @@ class Event < ActiveRecord::Base
    tt["state"] = state
    tt["zip"] = zip
 
-
+  #for the number of results, we're iterating through each array of paramters, putting them in a hash as a value, with a key of the same name.
+  #this is happening for every result and we're using n so that the indices of each array match up, thereby making a complete venue object, which can later be created
   resul = []
    for n in 0..co do
      v = { name: tt["name"][n], street: tt["street"][n], city: tt["city"][n], state: tt["state"][n], zip: tt["zip"][n]}
@@ -70,7 +72,7 @@ class Event < ActiveRecord::Base
    resul.map do |entry|
     Venue.create(name: entry[:name], street: entry[:street], city: entry[:city], state: entry[:state], zip: entry[:zip])
    end
-    # OPTIMIZE comment what all this code does
+
 
    c = titles.count
    t  = Hash.new
