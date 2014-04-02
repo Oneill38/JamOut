@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
       "datetime_utc.lte" => options[:end_date],
    }
 
-   base_url = "http://api.seatgeek.com/2/events?taxonomies.name=concert"
+   base_url = "http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=50"
 
    response = HTTParty.get(base_url, :query => query)
 
@@ -80,17 +80,17 @@ class Event < ActiveRecord::Base
    t["url"] = urls
 
   results = []
-   for n in 0..c do
-    ven = t["venue"][n]
-    venue = Venue.find_by(:name => ven)
-     a = { artist: t["title"][n], date: t["date"][n], venue: venue.id, url: t["url"][n]}
+   for n in 0..c
+     a = { artist: t["title"][n], date: t["date"][n], venue: t["venue"][n], url: t["url"][n]}
      results << a
    end
+   binding.pry
 
   #This pop, pops off last result which is blank
   results.pop
   results.map do |entry|
-     Event.create(venue_id: entry[:venue], title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
+     v = Venue.find_by(name: entry[:venue])
+     Event.create(venue_id: v.id, title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
    end
   end
 

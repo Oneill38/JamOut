@@ -17,6 +17,7 @@ class Venue < ActiveRecord::Base
   has_many :artists, through: :events
 
   validates :name, uniqueness: { scope: :street }
+  validates :name, presence: true
   validates :street, presence: true
   validates :city, presence: true
   validates :state, presence: true

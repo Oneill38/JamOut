@@ -19,6 +19,7 @@ JamOutApp::Application.routes.draw do
 
   get "/tickets" => "tickets#index"
   post "/tickets" => "tickets#create"
+  delete "/tickets/:id" => "tickets#destroy"
 
   get "/search/new"    => "search#new"
   get "/search/results" => "search#show"
