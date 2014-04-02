@@ -84,7 +84,7 @@ class Event < ActiveRecord::Base
      a = { artist: t["title"][n], date: t["date"][n], venue: t["venue"][n], url: t["url"][n]}
      results << a
    end
-   binding.pry
+
 
   #This pop, pops off last result which is blank
   results.pop

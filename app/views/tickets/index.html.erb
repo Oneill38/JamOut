@@ -8,8 +8,5 @@
   <%= t.venue.name %><br>
   <a href="<%= t.url %>">Buy Tickets!</a><br><br>
 
-  <%= form_tag(tickets_path, method: "destroy")  %>
-      <%= hidden_field_tag(:user_id, current_user.id) %>
-      <%= hidden_field_tag(:event_id, t.id) %>
 <% end %>
 </p>
