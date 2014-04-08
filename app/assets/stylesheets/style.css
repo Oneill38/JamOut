@@ -1,10 +1,46 @@
-body {
-  background-color: black;
-  color: gray;
-  font-family: Georgia Serif;
+  body {
+    padding-left: 50px;
+    background-image: url("http://www.paulunderhill.com/wp-content/uploads/2013/05/Music-event-photographer.jpg");
+    background-size: cover;
+  }
+
+  #main {
+    background-color: black;
+  }
+
+a {
+  text-decoration: none;
+  color: aqua;
+    }
+
+h1 {
+  color: silver;
+  text-align: center;
+  font-family: Verdana;
+  font-size: 72px;
+    }
+
+#login {
+  font-family: Verdana;
 }
 
-p {
-  color: gray;
-  font-family: Georgia Serif;
+label {
+  color: silver;
 }
+.menu {
+  display: inline;
+  font-family: Verdana;
+}
+.search {
+  text-align: center;
+}
+
+.results{
+  background: black;
+  color: purple;
+  width: 250px;
+  text-align: center;
+}
+
+
+

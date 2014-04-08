@@ -2,7 +2,7 @@
 
 <a href="/">Home</a>
 
-
+<div class="results">
 <p>
   <% @results.each do |concert| %>
     <%= concert.title %></br>
@@ -14,10 +14,10 @@
       <%= hidden_field_tag(:title, concert.title) %>
       <%= submit_tag("Add to My Events") %>
 
-  <% end %>
+    <% end %>
    </br><br>
   <% end %>
 
 
 </p>
-
+</div>

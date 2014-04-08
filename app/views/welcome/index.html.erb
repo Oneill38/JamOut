@@ -1,7 +1,9 @@
 <h1>Welcome To JamOut</h1>
 
+<nav>
 <div id="main">
 <% if logged_in? %>
+  <div class="menu">
   <p>
     <a href="/logout"> Logout</a>
   </p>
@@ -9,13 +11,16 @@
   <p>
     <a href="/tickets">My Events</a>
   </p>
+</div>
 <% else %>
+  <div id="login">
   <p>
     <a href="/users/new">Sign Up</a>
   </p>
   <p>
     <a href="/session/new">Login</a>
   </p>
+</div>
 <% end %>
 </div>
-
+</nav>
