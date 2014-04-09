@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    @ticket = Ticket.where(id: params[:id])
+    @ticket = Ticket.where(:id => params["id"]).first
     @ticket.destroy
     redirect_to root_path
   end
