@@ -5,7 +5,7 @@
   }
 
   #main {
-    background-color: black;
+    text-align: center;
   }
 
 a {
@@ -14,7 +14,7 @@ a {
     }
 
 h1 {
-  color: silver;
+  color: greenyellow;
   text-align: center;
   font-family: Verdana;
   font-size: 72px;
@@ -40,6 +40,18 @@ label {
   color: purple;
   width: 250px;
   text-align: center;
+}
+.menu .button {
+  background-color: greenyellow;
+  border: 0px;
+  border-radius: 8px;
+  font-size: 35px;
+}
+#login .button {
+  background-color: greenyellow;
+  border: 0px;
+  border-radius: 8px;
+  font-size: 35px;
 }
 
 

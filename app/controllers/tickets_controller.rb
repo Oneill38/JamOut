@@ -16,4 +16,10 @@ class TicketsController < ApplicationController
     @events = current_user.events
   end
 
+  def destroy
+    @ticket = Ticket.where(id: params[:id])
+    @ticket.destroy
+    redirect_to root_path
+  end
+
 end

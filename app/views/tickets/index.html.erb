@@ -6,6 +6,7 @@
   <%= t.title %><br>
   <%= t.date %><br>
   <%= t.venue.name %><br>
+  <%= link_to "Delete Ticket", ticket_path(@ticket =Ticket.where(user_id: current_user.id, event_id: t.id).first.id), method: :delete %>
   <a href="<%= t.url %>">Buy Tickets!</a><br><br>
 <% end %>
 </p>

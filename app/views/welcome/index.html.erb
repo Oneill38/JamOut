@@ -5,20 +5,20 @@
 <% if logged_in? %>
   <div class="menu">
   <p>
-    <a href="/logout"> Logout</a>
+    <%= button_to "Logout", logout_path, :class => "button", :method => :get %>
   </p>
-    <a href="/search/new">Search For A Concert!</a>
+    <%= button_to "JamOut!", search_new_path, :class => "button", :method => :get %>
   <p>
-    <a href="/tickets">My Events</a>
+    <%= button_to "My Events", tickets_path, :class => "button", :method => :get %>
   </p>
 </div>
 <% else %>
   <div id="login">
   <p>
-    <a href="/users/new">Sign Up</a>
+    <%= button_to "Sign Up", new_user_path, :class => "button", :method => :get %>
   </p>
   <p>
-    <a href="/session/new">Login</a>
+    <%= button_to "Login", session_new_path, :class => "button", :method => :get %>
   </p>
 </div>
 <% end %>
