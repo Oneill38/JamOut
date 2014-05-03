@@ -57,6 +57,9 @@ group :development, :test do
 # one liners to test common rails functionality
 # https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rubocop'
 end
 
 gem 'httparty', '~>0.13.0'
@@ -66,3 +69,6 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+
+
+
