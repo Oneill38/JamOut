@@ -23,7 +23,6 @@ class Event < ActiveRecord::Base
   validates :url, presence: true
 
   def self.search(options)
-
    query = {
       "geoip" => options[:zip_code],
       "range" => options[:radius] + "mi",
@@ -38,62 +37,30 @@ class Event < ActiveRecord::Base
    #Had to call to_json to get the code to work
     better_result = JSON.parse(response.to_json)
 
-    #This is for the events, gathering array of all the parameters
-    titles = better_result["events"].collect { |hash| hash["title"] }
-    dates = better_result["events"].collect { |hash| hash["datetime_local"].to_s }
-    venues = better_result["events"].collect  {|hash| hash["venue"]["name"] }
-    urls = better_result["events"].collect { |hash| hash["performers"][0]["url"] }
+    results = []
+    ###iterating through results, creating the venues
+    better_result["events"].each do |v|
+      venue = Venue.new
+      venue.name = v["venue"]["name"]
+      venue.street = v["venue"]["address"]
+      venue.city = v["venue"]["city"]
+      venue.state = v["venue"]["state"]
+      venue.zip = v["venue"]["postal_code"]
+      venue.save
+    end
 
-    #This is for the venue, gathering array of all the parameters
-    name = better_result["events"].collect { |hash| hash["venue"]["name"]}
-    street = better_result["events"].collect { |hash| hash["venue"]["address"]}
-    city = better_result["events"].collect { |hash| hash["venue"]["city"]}
-    state = better_result["events"].collect { |hash| hash["venue"]["state"]}
-    zip = better_result["events"].collect { |hash| hash["venue"]["postal_code"]}
+    #iterating through results, creating the events, and finding the venue
+    better_result["events"].each do |e|
+      event = Event.new
+      the_venue = Venue.find_by(name: e["venue"]["name"] )
+      event.venue_id = the_venue.id
+      event.title = e["title"]
+      event.date = e["datetime_local"].to_s
+      event.url = e["performers"][0]["url"]
+      event.save
+      results << event
+    end
 
-    #made a hash to contain all the arrays, make them easier to access
-   co = name.count
-   tt  = Hash.new
-   tt["name"] = name
-   tt["street"] = street
-   tt["city"] = city
-   tt["state"] = state
-   tt["zip"] = zip
-
-  #for the number of results, we're iterating through each array of paramters, putting them in a hash as a value, with a key of the same name.
-  #this is happening for every result and we're using n so that the indices of each array match up, thereby making a complete venue object, which can later be created
-  resul = []
-   for n in 0..co do
-     v = { name: tt["name"][n], street: tt["street"][n], city: tt["city"][n], state: tt["state"][n], zip: tt["zip"][n]}
-     resul << v
-   end
-
-
-   resul.map do |entry|
-    Venue.create(name: entry[:name], street: entry[:street], city: entry[:city], state: entry[:state], zip: entry[:zip])
-   end
-
-
-   c = titles.count
-   t  = Hash.new
-   t["title"] = titles
-   t["date"] = dates
-   t["venue"] = venues
-   t["url"] = urls
-
-  results = []
-   for n in 0..c
-     a = { artist: t["title"][n], date: t["date"][n], venue: t["venue"][n], url: t["url"][n]}
-     results << a
-   end
-
-
-  #This pop, pops off last result which is blank
-  results.pop
-  results.map do |entry|
-     v = Venue.find_by(name: entry[:venue])
-     Event.create(venue_id: v.id, title: entry[:artist], date: entry[:date].to_s, url: entry[:url])
-   end
+    return results
   end
-
 end
