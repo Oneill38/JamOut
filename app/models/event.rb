@@ -53,9 +53,12 @@ class Event < ActiveRecord::Base
     better_result["events"].each do |e|
       event = Event.new
       the_venue = Venue.find_by(name: e["venue"]["name"] )
+      event_time = event.fix_time(e["datetime_local"].to_s)
+      event_date = event.fix_date(e["datetime_local"].to_s)
       event.venue_id = the_venue.id
       event.title = e["title"]
-      event.date = e["datetime_local"].to_s
+      event.time = event_time
+      event.date = event_date
       event.url = e["url"]
       event.picture = e["performers"][0]["image"]
       event.min = e["stats"]["lowest_price"]
@@ -66,4 +69,30 @@ class Event < ActiveRecord::Base
 
     return results
   end
+
+  def fix_time(the_time)
+    time = the_time.split("T")[1]
+    time.slice!(5..7)
+    hour = time[0..1]
+    if hour.to_i >= 13
+      hour = hour.to_i - 12
+      time.slice!(0..1)
+      time = (hour).to_s + time + " PM "
+    end
+    return time
+  end
+
+  def fix_date(the_date)
+    date = the_date.split("T")[0]
+    month = {"01" => "January", "02" => "February", "03" => "March", "04" => "April", "05" => "May", "06" => "June", "07" => "July", "08" => "August", "09" => "September", "10" => "October", "11" => "November", "12" => "December"}
+    my_month = date[5..6]
+    event_month = month[my_month]
+    day = date[8..9]
+    year = date[0..3]
+    total_event_date = event_month + " " + day + ", " + year
+
+    return total_event_date
+
+  end
+
 end
