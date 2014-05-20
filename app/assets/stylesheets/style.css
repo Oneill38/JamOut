@@ -28,10 +28,10 @@ label {
 }
 
 .results{
-  background: black;
   color: purple;
-  width: 250px;
   text-align: center;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 #mainlogin {
@@ -76,7 +76,14 @@ label {
   opacity: 0.5;
 }
 #my_events{
-  color: grey;
+  color: purple;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+.results_container {
+  display: inline-block;
+  padding: 5px;
 }
 
 
