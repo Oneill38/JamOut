@@ -3,26 +3,26 @@
 <%= render "layouts/nav" %>
 
 <div class="results">
-<p>
-  <% @results.each do |concert| %>
-    <%=image_tag(concert.picture) %>
-    <%= concert.title %></br>
-    <%= concert.time %></br>
-    <%= concert.date %></br>
-    <%= concert.venue.name %></br>
-    <%= label_tag "Tickets From: " %> <%= concert.min %> <%= label_tag " - " %> <%=concert.max %></br>
-    <a href="<%= concert.url %>">Buy Tickets</a>
+  <p>
+    <% @results.each do |concert| %>
+      <div class="results_container">
+      <%=image_tag(concert.picture) %></br>
+      <%= concert.title %></br>
+      <%= concert.time %></br>
+      <%= concert.date %></br>
+      <%= concert.venue.name %></br>
+      <%= label_tag "Tickets From: " %> <%= concert.min %> <%= label_tag " - " %> <%=concert.max %></br>
+      <a href="<%= concert.url %>">Buy Tickets</a>
 
 
-    <%= form_tag("/tickets", method: :post) do %>
-      <%= hidden_field_tag(:user_id, current_user.id) %>
-      <%= hidden_field_tag(:title, concert.title) %>
-      <%= submit_tag("Add to My Events") %>
+      <%= form_tag("/tickets", method: :post) do %>
+        <%= hidden_field_tag(:user_id, current_user.id) %>
+        <%= hidden_field_tag(:title, concert.title) %>
+        <%= submit_tag("Add to My Events") %>
 
+      <% end %>
+     </br><br>
+      </div>
     <% end %>
-   </br><br>
-  <% end %>
-
-
-</p>
+  </p>
 </div>

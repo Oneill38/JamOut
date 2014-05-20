@@ -4,6 +4,7 @@
 <div id="my_events">
   <p>
     <% @events.each do |t| %>
+      <div class="results_container">
       <%= t.picture %><br>
       <%= t.title %><br>
       <%= t.time %><br>
@@ -11,6 +12,7 @@
       <%= t.venue.name %><br>
       <%= link_to "Delete Ticket", ticket_path(@ticket =Ticket.where(user_id: current_user.id, event_id: t.id).first.id), method: :delete %>
       <a href="<%= t.url %>">Buy Tickets!</a><br><br>
+      </div>
     <% end %>
   </p>
 </div>
