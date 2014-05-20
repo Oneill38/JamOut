@@ -1,0 +1,26 @@
+</header>
+<nav>
+  <div id="main">
+  <% if logged_in? %>
+    <div class="menu">
+
+      <%= link_to "Logout", logout_path, :method => :get %>
+
+      <%= link_to "JamOut!", search_new_path, :method => :get %>
+
+      <%= link_to "My Events", tickets_path,  :method => :get %>
+
+      <%= link_to "Home", root_path %>
+
+  </div>
+  <% else %>
+    <div id="login">
+
+      <%= link_to "Sign Up", new_user_path,  :method => :get %>
+
+      <%= link_to "Login", session_new_path, :method => :get %>
+
+  </div>
+  <% end %>
+  </div>
+</nav>

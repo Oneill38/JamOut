@@ -56,7 +56,10 @@ class Event < ActiveRecord::Base
       event.venue_id = the_venue.id
       event.title = e["title"]
       event.date = e["datetime_local"].to_s
-      event.url = e["performers"][0]["url"]
+      event.url = e["url"]
+      event.picture = e["performers"][0]["image"]
+      event.min = e["stats"]["lowest_price"]
+      event.max = e["stats"]["highest_price"]
       event.save
       results << event
     end

@@ -1,38 +1,28 @@
   body {
     padding-left: 50px;
-    background-image: url("http://www.paulunderhill.com/wp-content/uploads/2013/05/Music-event-photographer.jpg");
     background-size: cover;
-    color: greenyellow
-  }
-
-  #main {
-    text-align: center;
+    background-image: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTwJ28vm46EYmDbio13PSlMTBsF3CFFkOkLLcPNYyH6_nebLKms");
+    font-family: 'Aclonica', sans-serif;
   }
 
 a {
   text-decoration: none;
-  color: aqua;
+  color: grey;
     }
 
 h1 {
-  color: greenyellow;
+  color: grey;
+  opacity: 0.5;
   text-align: center;
-  font-family: Verdana;
-  font-size: 72px;
-  text-shadow: 3px 8px purple;
+  font-family: 'Aclonica', sans-serif;
+  text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+  font-size: 100px;
     }
-
-#login {
-  font-family: Verdana;
-}
 
 label {
   color: silver;
 }
-.menu {
-  display: inline;
-  font-family: Verdana;
-}
+
 .search {
   text-align: center;
 }
@@ -43,18 +33,52 @@ label {
   width: 250px;
   text-align: center;
 }
-.menu .button {
-  background-color: greenyellow;
-  border: 0px;
-  border-radius: 8px;
+
+#mainlogin {
+  background-image: url("http://www.paulunderhill.com/wp-content/uploads/2013/05/Music-event-photographer.jpg");
+  margin: 0 auto;
+  padding-bottom: 75%;
+  background-size: cover
+}
+#login{
+  text-align: center;
+  font-size: 25px;
+  border-top-color: grey;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-color: grey;
+  font-family: 'Aclonica', sans-serif;
+  margin-bottom: 20px
+}
+
+#login a {
+  padding: 25px;
+  opacity: 0.5;
+}
+#login_form {
+  margin: 0 auto;
+  text-align: center;
   font-size: 35px;
 }
-#login .button {
-  background-color: greenyellow;
-  border: 0px;
-  border-radius: 8px;
-  font-size: 35px;
+.menu{
+  text-align: center;
+  font-size: 25px;
+  border-top-color: grey;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-bottom-color: grey;
+  font-family: 'Aclonica', sans-serif;
+  margin-bottom: 20px
+
 }
+.menu a {
+  padding: 25px;
+  opacity: 0.5;
+}
+#my_events{
+  color: grey;
+}
+
 
 
 

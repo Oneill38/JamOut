@@ -1,15 +1,15 @@
 <h1>Search For A Concert</h1>
 
-<a href="/">Home</a>
+<%= render "layouts/nav" %>
 
 <div class="search">
 <form method="get" action="/search/results">
   <label for="Zip">Zip Code</label>
-  <input type="text" name="zip_code" value="zip code(mi)">
+  <input type="text" name="zip_code" placeholder="zip code(mi)">
   <label for="Radius">Radius</label>
-  <input type="text" name="radius" value="radius">
-  <input type="text" name="start_date" value="yyyy-mm-dd">
-  <input type="text" name="end_date" value="yyyy-mm-dd">
+  <input type="text" name="radius" placeholder="radius">
+  <input type="date" name="start_date" placeholder="yyyy-mm-dd">
+  <input type="date" name="end_date" placeholder="yyyy-mm-dd">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" value="Go!">
 </form>

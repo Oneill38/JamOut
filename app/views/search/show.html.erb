@@ -1,13 +1,17 @@
 <h1> Concerts Matching Your Search Criteria </h1>
 
-<a href="/">Home</a>
+<%= render "layouts/nav" %>
 
 <div class="results">
 <p>
   <% @results.each do |concert| %>
+    <%=image_tag(concert.picture) %>
     <%= concert.title %></br>
     <%= concert.date %></br>
-    <%= concert.venue.name %>
+    <%= concert.venue.name %></br>
+    <%= label_tag "Tickets From: " %> <%= concert.min %> <%= label_tag " - " %> <%=concert.max %></br>
+    <a href="<%= concert.url %>">Buy Tickets</a>
+
 
     <%= form_tag("/tickets", method: :post) do %>
       <%= hidden_field_tag(:user_id, current_user.id) %>
