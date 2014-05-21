@@ -4,7 +4,7 @@
 
  [Pivitol Tracker](https://www.pivotaltracker.com/s/projects/1047994)
 
- [Click Here to JamOut](http://strawberry-cake-2450.herokuapp.com/)
+ [Click Here to JamOut](http://jamout.herokuapp.com/)
 
 
 
