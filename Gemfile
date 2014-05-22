@@ -58,7 +58,7 @@ group :development, :test do
 # https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-matchers'
   gem 'capybara'
-  gem 'factory_girl_rails'
+  gem "factory_girl_rails", "~> 4.0"
   gem 'rubocop'
 end
 

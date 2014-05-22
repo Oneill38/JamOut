@@ -16,6 +16,7 @@ class Event < ActiveRecord::Base
   belongs_to(:venue)
   has_many :artists
   has_many :users, through: :tickets
+  has_many :tickets
 
   validates :title, uniqueness: { scope: :date }
   validates :title, presence: true
