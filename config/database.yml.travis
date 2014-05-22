@@ -1,0 +1,4 @@
+postgresql: &postgresql
+  adapter: postgresql
+  username: Meg
+  password:
