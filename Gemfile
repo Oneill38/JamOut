@@ -67,7 +67,7 @@ gem 'httparty', '~>0.13.0'
 group :development do
   gem "rails-erd"
 end
-
+gem 'coveralls', require: false
 gem 'rails_12factor', group: :production
 
 
