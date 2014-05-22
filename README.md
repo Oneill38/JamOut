@@ -1,5 +1,6 @@
 #JamOut
 [![Build Status](https://travis-ci.org/Oneill38/JamOut.svg?branch=master)](https://travis-ci.org/Oneill38/JamOut)
+[![Coverage Status](https://coveralls.io/repos/Oneill38/JamOut/badge.png)](https://coveralls.io/r/Oneill38/JamOut)
 
  Find concerts playing nearby, add them to your watchlist, buy tickets using seatgeek. Then _JamOut_.
 
