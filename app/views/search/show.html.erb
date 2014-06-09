@@ -6,7 +6,11 @@
   <p>
     <% @results.each do |concert| %>
       <div class="results_container">
-      <%=image_tag(concert.picture) %></br>
+      <% if !(concert.picture) %>
+        <%= image_tag("http://bgcbloomington.com/wp-content/uploads/2013/06/smaller-blank-head-shot.jpg") %></br>
+      <% else %>
+        <%=image_tag(concert.picture) %></br>
+      <% end %>
       <%= concert.title %></br>
       <%= concert.time %></br>
       <%= concert.date %></br>
